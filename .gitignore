@@ -1,0 +1,22 @@
+## Build output
+bin/
+obj/
+out/
+
+## Visual Studio / VS Code
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## ASP.NET / .NET
+appsettings.Development.json
+*.db
+*.sqlite
+*.log
+
+## OS files
+.DS_Store
+Thumbs.db

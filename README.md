@@ -82,4 +82,9 @@ O projeto está em construção. As próximas melhorias planejadas são:
 - Centralizar tratamento de exceções
 - Adicionar observabilidade e logs
 - Criar testes de unidade e integração
+
+## Git ignore
+
+O projeto já conta com um arquivo de ignore para evitar versionar arquivos temporários, artefatos de build e configurações locais.
+
 # APICep_BrasilAPI
