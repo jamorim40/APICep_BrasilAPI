@@ -20,3 +20,7 @@ appsettings.Development.json
 ## OS files
 .DS_Store
 Thumbs.db
+
+## Project docs
+Documents/
+.doc
