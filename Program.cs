@@ -1,4 +1,5 @@
 using APICep.Clients;
+using APICep.Middlewares;
 using APICep.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,7 +25,9 @@ if (app.Environment.IsDevelopment())
 app.UseSwagger();
 app.UseSwaggerUI();
 
+
 app.UseHttpsRedirection();
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseAuthorization();
 

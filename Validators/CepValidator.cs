@@ -1,6 +1,4 @@
-﻿
-
-namespace APICep.Validators;
+﻿namespace APICep.Validators;
 
 public static class CepValidator
 {
@@ -11,7 +9,7 @@ public static class CepValidator
             .Replace("-", "")
             .Replace(" ", "");
     }
-    public static bool Validador(string cep)
+    public static bool Validar (string cep)
     {
         //cep = Normalizar(cep);
 

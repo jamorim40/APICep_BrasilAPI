@@ -22,23 +22,10 @@ public class CepController : ControllerBase
     {
         cep = CepValidator.Normalizar(cep);
 
-        if (!CepValidator.Validador(cep))
-            return BadRequest("CEP deve conter exatamento 8 dígitos.");
+        if (!CepValidator.Validar(cep))
+            throw new FormatoIncorretoException("CEP deve conter exatamente 8 dígitos.");
+        var resultadoBuscar = await _cepService.BuscarCep(cep);
+        return Ok(resultadoBuscar);
 
-        try
-        {
-
-            var resultadoBusca = await _cepService.BuscarCep(cep);
-
-            return Ok(resultadoBusca);
-        }
-        catch(CepNaoEncontradoException ex)
-        {
-            return NotFound(ex.Message);
-        }
-         catch(Exception)
-        {
-            return StatusCode(500, "Erro interno no serviço CEP.");
-        } 
     }
 }
