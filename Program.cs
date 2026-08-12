@@ -10,7 +10,11 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddScoped<ICepService, CepService>();
-builder.Services.AddHttpClient<IBrasilApiClient, BrasilApiClient>();
+builder.Services.AddHttpClient<IBrasilApiClient, BrasilApiClient>(client =>
+{
+    var baseUrl = builder.Configuration["BrasilApi:BaseUrl"];
+    client.BaseAddress = new Uri(baseUrl!);
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

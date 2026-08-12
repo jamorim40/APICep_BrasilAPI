@@ -16,7 +16,7 @@ namespace APICep.Clients
 
         public async Task<BrasilCepResponse?> BuscarCep(string cep)
         {
-            var response = await _httpClient.GetAsync($"https://brasilapi.com.br/api/cep/v2/{cep}");
+            var response = await _httpClient.GetAsync($"api/cep/v2/{cep}");
 
             if (response.StatusCode == HttpStatusCode.NotFound)
             {
