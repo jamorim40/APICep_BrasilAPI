@@ -14,7 +14,7 @@ namespace APICep.Clients
             _httpClient = httpClient;
         }
 
-        public async Task<BrasilCepResponse?> BuscarCep(string cep)
+        public async Task<BrasilCepResponse?> BuscarCepAsync(string cep)
         {
             var response = await _httpClient.GetAsync($"api/cep/v2/{cep}");
 
@@ -32,13 +32,13 @@ namespace APICep.Clients
             }
 
             var json= await response.Content.ReadAsStringAsync();
-            var resultado=JsonSerializer.Deserialize<BrasilCepResponse>(json,
+            var brasilCepResponse=JsonSerializer.Deserialize<BrasilCepResponse>(json,
             new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true,
             });
 
-            return resultado;
+            return brasilCepResponse;
 
            
         }

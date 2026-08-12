@@ -15,15 +15,15 @@ namespace APICep.DTOs
         public string? Neighborhood { get; set;}
         public string? Street { get; set;}
         public string? TimezoneName { get; set;}
-        public Location? Location {  get; set;}
+        public BrasilApiLocation? Location {  get; set;}
 
     }
-    public class Location
+    public class BrasilApiLocation
     {
         public string? Type { get; set;}
-        public Coordinates? Coordinates { get; set;}
+        public BrasilApiCoordinates? Coordinates { get; set;}
     }
-    public class Coordinates
+    public class BrasilApiCoordinates
     {
         public string? Longitude { get; set;}
         public string? Latitude { get; set;}

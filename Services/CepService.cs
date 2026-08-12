@@ -6,27 +6,28 @@ namespace APICep.Services;
 
 public class CepService:ICepService
 {
-    private readonly IBrasilApiClient _brasilClient;
+    private readonly IBrasilApiClient _brasilApiClient;
 
     public CepService(IBrasilApiClient brasilApiClient)
     {
-        _brasilClient = brasilApiClient;
+        _brasilApiClient = brasilApiClient;
     }
-    public async Task<CepResponse> BuscarCep(string cep)
+    public async Task<CepResponse> BuscarCepAsync(string cep)
     {
-        var resultado=await _brasilClient.BuscarCep(cep);
-        if(resultado is null)
+        
+        var cepEncontrado = await _brasilApiClient.BuscarCepAsync(cep);
+        if(cepEncontrado is null)
         {
             throw new CepNaoEncontradoException("CEP não encontrado.");
         }
 
         return new CepResponse
         {
-            Cep = resultado.Cep,
-            Logradouro = resultado.Street?? string.Empty,
-            Bairro = resultado.Neighborhood?? string.Empty,
-            Cidade = resultado.City?? string.Empty,
-            Estado = resultado.State?? string.Empty
+            Cep = cepEncontrado.Cep,
+            Logradouro = cepEncontrado.Street?? string.Empty,
+            Bairro = cepEncontrado.Neighborhood?? string.Empty,
+            Cidade = cepEncontrado.City?? string.Empty,
+            Estado = cepEncontrado.State?? string.Empty
         };
     }
 }

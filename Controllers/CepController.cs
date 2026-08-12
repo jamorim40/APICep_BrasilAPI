@@ -18,14 +18,14 @@ public class CepController : ControllerBase
         _cepService = cepService;
     }
     [HttpGet("{cep}")]
-    public async Task<IActionResult> BuscarCep(string cep)
+    public async Task<IActionResult> BuscarCepAsync(string cep)
     {
         cep = CepValidator.Normalizar(cep);
 
         if (!CepValidator.Validar(cep))
             throw new FormatoIncorretoException("CEP deve conter exatamente 8 dígitos.");
-        var resultadoBuscar = await _cepService.BuscarCep(cep);
-        return Ok(resultadoBuscar);
+        var cepResponser = await _cepService.BuscarCepAsync(cep);
+        return Ok(cepResponser);
 
     }
 }

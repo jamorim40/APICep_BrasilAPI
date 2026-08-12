@@ -4,6 +4,6 @@ namespace APICep.Clients
 {
     public interface IBrasilApiClient
     {
-        Task<BrasilCepResponse?> BuscarCep(string cep);
+        Task<BrasilCepResponse?> BuscarCepAsync(string cep);
     }
 }
