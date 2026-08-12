@@ -11,6 +11,7 @@ Essa aplicação fornece um endpoint simples para consultar informações de end
 - Consulta de CEP via endpoint HTTP
 - Validação básica do formato do CEP
 - Integração com a BrasilAPI
+- Tratamento centralizado de erros conhecidos
 - Documentação automática com Swagger/OpenAPI
 
 ## Estrutura do projeto
@@ -75,11 +76,12 @@ O projeto está em construção. As próximas melhorias planejadas são:
 - Cache
 - Logging
 - Testes automatizados
+- Configuração externa da URL da BrasilAPI
 
 ## Melhorias sugeridas
 
 - Melhorar a organização de nomes e classes
-- Centralizar tratamento de exceções
+- Padronizar respostas de erro
 - Adicionar observabilidade e logs
 - Criar testes de unidade e integração
 

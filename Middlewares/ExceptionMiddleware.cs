@@ -41,7 +41,13 @@ namespace APICep.Middlewares
                 var errorResponse = new {Message = ExApiExterna.Message};
                 await httpContext.Response.WriteAsJsonAsync(errorResponse);
             }
-            
+            catch (Exception)
+            {
+                httpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
+                httpContext.Response.ContentType = "application/json";
+                var errorResponse = new { Message = "Erro interno no serviço CEP." };
+                await httpContext.Response.WriteAsJsonAsync(errorResponse);
+            }
         }
     }
 }
