@@ -6,16 +6,15 @@ namespace APICep.Services;
 
 public class CepService:ICepService
 {
-    private readonly IBrasilApiClient _brasilApiClient;
+    private readonly IBrasilApiClient _brasilApiCliente;
 
-    public CepService(IBrasilApiClient brasilApiClient)
+    public CepService(IBrasilApiClient brasilApiCliente)
     {
-        _brasilApiClient = brasilApiClient;
+        _brasilApiCliente = brasilApiCliente;
     }
     public async Task<CepResponse> BuscarCepAsync(string cep)
     {
-        
-        var cepEncontrado = await _brasilApiClient.BuscarCepAsync(cep);
+        var cepEncontrado = await _brasilApiCliente.BuscarCepAsync(cep);
         if(cepEncontrado is null)
         {
             throw new CepNaoEncontradoException("CEP não encontrado.");

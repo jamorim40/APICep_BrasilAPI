@@ -12,10 +12,10 @@ namespace APICep.Controllers;
 
 public class CepController : ControllerBase
 {
-    private readonly ICepService _cepService;
-    public CepController(ICepService cepService)
+    private readonly ICepService _cepServico;
+    public CepController(ICepService cepServico)
     {
-        _cepService = cepService;
+        _cepServico = cepServico;
     }
     [HttpGet("{cep}")]
     public async Task<IActionResult> BuscarCepAsync(string cep)
@@ -24,8 +24,8 @@ public class CepController : ControllerBase
 
         if (!CepValidator.Validar(cep))
             throw new FormatoIncorretoException("CEP deve conter exatamente 8 dígitos.");
-        var cepResponser = await _cepService.BuscarCepAsync(cep);
-        return Ok(cepResponser);
+        var cepResposta = await _cepServico.BuscarCepAsync(cep);
+        return Ok(cepResposta);
 
     }
 }

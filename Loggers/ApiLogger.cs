@@ -2,11 +2,10 @@ namespace APICep.Loggers
 {
     public class ApiLogger
     {
-        public ApiLogger(int statusCode, string message)
+        public ApiLogger(int codigoStatus, string mensagem)
         {
-            StatusCodigo = statusCode.ToString();
-            Mensagem = message;
-            
+            StatusCodigo = codigoStatus.ToString();
+            Mensagem = mensagem;
         }
 
         public string? StatusCodigo{get;set;}
