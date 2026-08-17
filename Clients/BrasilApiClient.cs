@@ -1,5 +1,7 @@
-﻿using APICep.DTOs;
+﻿using APICep.Configurations;
+using APICep.DTOs;
 using APICep.Exceptions;
+using Microsoft.Extensions.Options;
 using System.Net;
 using System.Text.Json;
 using JsonSerializer = System.Text.Json.JsonSerializer;
@@ -9,10 +11,12 @@ namespace APICep.Clients
     public class BrasilApiClient:IBrasilApiClient
     {
         private readonly HttpClient _clienteHttp;
+        private readonly BrasilApiSettings _brasilApiSettings;
 
-        public BrasilApiClient(HttpClient clienteHttp)
+        public BrasilApiClient(HttpClient clienteHttp, IOptions<BrasilApiSettings> brasilApiSettings)
         {
             _clienteHttp = clienteHttp;
+            _brasilApiSettings = brasilApiSettings.Value;
         }
 
         public async Task<BrasilCepResponse?> BuscarCepAsync(string cep)

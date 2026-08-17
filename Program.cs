@@ -1,6 +1,8 @@
 using APICep.Clients;
+using APICep.Configurations;
 using APICep.Middlewares;
 using APICep.Services;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,12 +12,18 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddMemoryCache();
+
+// Registrar configurações da BrasilAPI
+builder.Services.Configure<BrasilApiSettings>(
+    builder.Configuration.GetSection("BrasilApi"));
+
 builder.Services.AddScoped<ICepService, CepService>();
-builder.Services.AddHttpClient<IBrasilApiClient, BrasilApiClient>(client =>
-{
-    var baseUrl = builder.Configuration["BrasilApi:BaseUrl"];
-    client.BaseAddress = new Uri(baseUrl!);
-});
+builder.Services.AddHttpClient<IBrasilApiClient, BrasilApiClient>(
+    (serviceProvider, client) =>
+    {
+        var brasilApiSettings = serviceProvider.GetRequiredService<IOptions<BrasilApiSettings>>();
+        client.BaseAddress = new Uri(brasilApiSettings.Value.BaseUrl);
+    });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
